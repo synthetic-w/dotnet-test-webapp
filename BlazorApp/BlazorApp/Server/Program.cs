@@ -17,8 +17,8 @@ public class Program
 
         builder.Services.AddDbContext<DatabaseContext>
             (options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-        builder.Services.AddTransient<IUser, UserManager>();
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
+        builder.Services.AddTransient<IUserManager, UserManager>();
 
         var app = builder.Build();
 
