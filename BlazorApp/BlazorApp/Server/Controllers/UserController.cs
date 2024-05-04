@@ -8,23 +8,24 @@ namespace BlazorApp.Server.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly IUser _IUser;
+        private readonly IUserManager _userManager;
 
-        public UserController(IUser iUser)
+        public UserController(IUserManager iUser)
         {
-            _IUser = iUser;
+            _userManager = iUser;
         }
 
         [HttpGet]
+        [Route("GetDetails")]
         public async Task<List<User>> Get()
         {
-            return await Task.FromResult(_IUser.GetUserDetails());
+            return await Task.FromResult(_userManager.GetUserDetails());
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            User user = _IUser.GetUserData(id);
+            User user = _userManager.GetUserData(id);
 
             if (user != null)
             {
@@ -36,19 +37,19 @@ namespace BlazorApp.Server.Controllers
         [HttpPost]
         public void Post(User user)
         {
-            _IUser.AddUser(user);
+            _userManager.AddUser(user);
         }
 
         [HttpPut]
         public void Put(User user)
         {
-            _IUser.UpdateUserDetails(user);
+            _userManager.UpdateUserDetails(user);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _IUser.DeleteUser(id);
+            _userManager.DeleteUser(id);
             return Ok();
         }
     }

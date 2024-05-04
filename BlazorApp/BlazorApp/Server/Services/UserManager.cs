@@ -4,7 +4,7 @@ using BlazorApp.Shared.Models;
 using Microsoft.EntityFrameworkCore;
 namespace BlazorApp.Server.Services
 {
-    public class UserManager : IUser
+    public class UserManager : IUserManager
     {
         readonly DatabaseContext _dbContext = new();
 

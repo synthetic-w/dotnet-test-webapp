@@ -1,7 +1,7 @@
 ﻿using BlazorApp.Shared.Models;
 namespace BlazorApp.Server.Interfaces
 {
-    public interface IUser
+    public interface IUserManager
     {
         public List<User> GetUserDetails();
 
