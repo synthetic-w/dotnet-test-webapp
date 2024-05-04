@@ -1,0 +1,70 @@
+﻿@page "/user/add"
+@page "/user/edit/{userId:int}"
+@using BlazorApp.Shared.Models
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<PageTitle>Add user</PageTitle>
+
+<h1>Add user</h1>
+
+<EditForm Model="@user" OnValidSubmit="SaveUser">
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+        <div class="col-md-4">
+            <InputText class="form-control" @bind-Value="user.Username" />
+        </div>
+        <ValidationMessage For="@(() => user.Username)" />
+    </div>
+    <div class="mb-3">
+        <label for="PhoneNumber" class="form-label">Phone Number</label>
+        <div class="col-md-4">
+            <InputText class="form-control" @bind-Value="user.PhoneNumber" />
+        </div>
+        <ValidationMessage For="@(() => user.PhoneNumber)" />
+    </div>
+    <div class="mb-3">
+        <label for="EmailId" class="form-label">Email</label>
+        <div class="col-md-4">
+            <InputText class="form-control" @bind-Value="user.Email" />
+        </div>
+        <ValidationMessage For="@(() => user.Email)" />
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int userId { get; set; }
+
+    protected string Title = "Add";
+
+    protected User user = new();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (userId != 0)
+        {
+            Title = "Edit";
+            user = await Http.GetFromJsonAsync<User>("api/User/" + userId);
+        }
+    }
+
+    protected async Task SaveUser()
+    {
+        if (user.Id != 0)
+        {
+            await Http.PutAsJsonAsync("api/User", user);
+        }
+        else
+        {
+            await Http.PostAsJsonAsync("api/User", user);
+        }
+        Cancel();
+    }
+
+    public void Cancel()
+    {
+        NavigationManager.NavigateTo("/fetchuserdetails");
+    }
+}
