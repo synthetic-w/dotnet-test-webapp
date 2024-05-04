@@ -20,16 +20,14 @@ namespace BlazorApp.Server.Models
             modelBuilder.Entity<User>(entity =>
             {
                 entity.ToTable("userdata");
-                entity.Property(e => e.UserId).HasColumnName("UserId");
+                entity.HasKey(x => x.Id);
                 entity.Property(e => e.Username)
                     .HasMaxLength(100)
                     .IsUnicode(false);
-                entity.Property(e => e.RegistrationDate);
-                entity.Property(e => e.UserRating);
                 entity.Property(e => e.PhoneNumber)
                     .HasMaxLength(50)
                     .IsUnicode(false);
-                entity.Property(e => e.EmailId)
+                entity.Property(e => e.Email)
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });
