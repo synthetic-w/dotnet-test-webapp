@@ -13,11 +13,11 @@ namespace BlazorApp.Server.Models
         {
         }
 
-        public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<UserModel> Users { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<UserModel>(entity =>
             {
                 entity.ToTable("userdata");
                 entity.HasKey(x => x.Id);

@@ -37,11 +37,11 @@
     [Parameter]
     public int userId { get; set; }
 
-    User user = new User();
+    UserModel user = new UserModel();
 
     protected override async Task OnInitializedAsync()
     {
-        user = await Http.GetFromJsonAsync<User>("/api/User/" + Convert.ToInt32(userId));
+        user = await Http.GetFromJsonAsync<UserModel>("/api/User/" + Convert.ToInt32(userId));
     }
 
     protected async Task RemoveUser(int userID)

@@ -14,7 +14,7 @@ namespace BlazorApp.Server.Services
         }
 
         //To get all data of all users
-        public List<User> GetUserDetails()
+        public List<UserModel> GetUserDetails()
         {
             try
             {
@@ -27,7 +27,7 @@ namespace BlazorApp.Server.Services
         }
 
         //To add new user data
-        public void AddUser(User user)
+        public void AddUser(UserModel user)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace BlazorApp.Server.Services
         }
 
         //To update existing user data
-        public void UpdateUserDetails(User user)
+        public void UpdateUserDetails(UserModel user)
         {
             try
             {
@@ -55,11 +55,11 @@ namespace BlazorApp.Server.Services
         }
 
         //To get data of a single user
-        public User GetUserData(int id)
+        public UserModel GetUserData(int id)
         {
             try
             {
-                User? user = _dbContext.Users.Find(id);
+                UserModel? user = _dbContext.Users.Find(id);
                 if (user != null)
                 {
                     return user;
@@ -80,7 +80,7 @@ namespace BlazorApp.Server.Services
         {
             try
             {
-                User? user = _dbContext.Users.Find(id);
+                UserModel? user = _dbContext.Users.Find(id);
                 if (user != null)
                 {
                     _dbContext.Users.Remove(user);

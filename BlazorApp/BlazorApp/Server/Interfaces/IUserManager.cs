@@ -1,15 +1,16 @@
 ﻿using BlazorApp.Shared.Models;
+
 namespace BlazorApp.Server.Interfaces
 {
     public interface IUserManager
     {
-        public List<User> GetUserDetails();
+        public List<UserModel> GetUserDetails();
 
-        public void AddUser(User user);
+        public void AddUser(UserModel user);
 
-        public void UpdateUserDetails(User user);
+        public void UpdateUserDetails(UserModel user);
 
-        public User GetUserData(int id);
+        public UserModel GetUserData(int id);
 
         public void DeleteUser(int id);
     }

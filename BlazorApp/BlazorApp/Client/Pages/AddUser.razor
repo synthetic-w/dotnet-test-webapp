@@ -39,14 +39,14 @@
 
     protected string Title = "Add";
 
-    protected User user = new();
+    protected UserModel user = new();
 
     protected override async Task OnParametersSetAsync()
     {
         if (userId != 0)
         {
             Title = "Edit";
-            user = await Http.GetFromJsonAsync<User>("api/User/" + userId);
+            user = await Http.GetFromJsonAsync<UserModel>("api/User/" + userId);
         }
     }
 

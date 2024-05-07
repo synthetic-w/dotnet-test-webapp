@@ -66,11 +66,11 @@ else
 }
 
 @code {
-    protected List<User> userList = new();
+    protected List<UserModel> userList = new();
 
-    protected List<User> searchUserData = new();
+    protected List<UserModel> searchUserData = new();
 
-    protected User user = new();
+    protected UserModel user = new();
 
     protected string SearchString { get; set; } = string.Empty;
 
@@ -81,7 +81,7 @@ else
 
     protected async Task GetUser()
     {
-        userList = await Http.GetFromJsonAsync<List<User>>("api/User/GetDetails");
+        userList = await Http.GetFromJsonAsync<List<UserModel>>("api/User/GetDetails");
         searchUserData = userList;
     }
 

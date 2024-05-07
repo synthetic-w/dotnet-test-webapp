@@ -17,7 +17,7 @@ namespace BlazorApp.Server.Controllers
 
         [HttpGet]
         [Route("GetDetails")]
-        public async Task<List<User>> Get()
+        public async Task<List<UserModel>> Get()
         {
             return await Task.FromResult(_userManager.GetUserDetails());
         }
@@ -25,7 +25,7 @@ namespace BlazorApp.Server.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            User user = _userManager.GetUserData(id);
+            UserModel user = _userManager.GetUserData(id);
 
             if (user != null)
             {
@@ -35,13 +35,13 @@ namespace BlazorApp.Server.Controllers
         }
 
         [HttpPost]
-        public void Post(User user)
+        public void Post(UserModel user)
         {
             _userManager.AddUser(user);
         }
 
         [HttpPut]
-        public void Put(User user)
+        public void Put(UserModel user)
         {
             _userManager.UpdateUserDetails(user);
         }
