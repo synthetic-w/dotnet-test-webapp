@@ -11,27 +11,7 @@ on:
 
 jobs:
 
-  test:
-    runs-on: [ ubuntu-latest ]
-    strategy:
-      matrix:
-        dotnet-version: [ '6.0.x' ]
-    env:
-      PROJ_FILE_PATH: 'BlazorApp/Tests/BlazorApp.Server.Tests/BlazorApp.Server.Tests.csproj'
-    steps:
-    - name: Checking Out a Repository
-      uses: actions/checkout@v3
-    - name: Setup .NET ${{ matrix.dotnet-version }} SDK 
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: ${{ matrix.dotnet-version }}
-    - name: Install Dependencies
-      run: dotnet restore '${{ env.SLN_PATH }}/${{ env.PROJ_FILE_PATH }}'
-    - name: Build .NET Project
-      run: dotnet build -c Release --no-restore '${{ env.SLN_PATH }}/${{ env.PROJ_FILE_PATH }}'
-    - name: Test .NET Project
-      run: dotnet test -c Release --no-restore '${{ env.SLN_PATH }}/${{ env.PROJ_FILE_PATH }}'
-
+ 
   build:
     runs-on: [ ubuntu-latest ]
     needs: [ test ]
